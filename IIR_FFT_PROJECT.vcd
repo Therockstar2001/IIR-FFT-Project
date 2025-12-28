@@ -1,0 +1,254 @@
+$comment
+Copyright (C) 1991-2009 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+$end
+
+$date 
+  12/11/2025 23:49:03 
+$end
+$version 
+ QUARTUS_VCD_EXPORT 1.0 
+$end
+$timescale
+  1 ps
+$end
+$scope module top_fft_iir $end
+$var reg 1 ! clk $end
+$var reg 1 " rst $end
+$var reg 1 # mode $end
+$var reg 16 $ y_out[15:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+b0 $
+$end
+#10000
+1!
+#20000
+0!
+#30000
+1!
+#40000
+0!
+#50000
+1!
+0"
+#60000
+0!
+#70000
+1!
+1"
+#80000
+0!
+#90000
+1!
+#100000
+0!
+#110000
+1!
+#120000
+0!
+#130000
+1!
+#140000
+0!
+#150000
+1!
+#160000
+0!
+#170000
+1!
+#180000
+0!
+#190000
+1!
+#200000
+0!
+#210000
+1!
+#220000
+0!
+#230000
+1!
+#240000
+0!
+#250000
+1!
+#260000
+0!
+#270000
+1!
+#280000
+0!
+#290000
+1!
+#300000
+0!
+#310000
+1!
+#320000
+0!
+#330000
+1!
+#340000
+0!
+#350000
+1!
+#360000
+0!
+#370000
+1!
+#380000
+0!
+#390000
+1!
+#400000
+0!
+#410000
+1!
+#420000
+0!
+#430000
+1!
+#440000
+0!
+#450000
+1!
+#460000
+0!
+#470000
+1!
+#480000
+0!
+#490000
+1!
+#500000
+0!
+1#
+b10011000100 $
+#510000
+1!
+#520000
+0!
+#530000
+1!
+b1001110100110 $
+#540000
+0!
+#550000
+1!
+#560000
+0!
+#570000
+1!
+b1010000100000 $
+#580000
+0!
+#590000
+1!
+#600000
+0!
+#610000
+1!
+b11011111111 $
+#620000
+0!
+#630000
+1!
+#640000
+0!
+#650000
+1!
+b110100010001 $
+#660000
+0!
+#670000
+1!
+#680000
+0!
+#690000
+1!
+b1110011100100 $
+#700000
+0!
+#710000
+1!
+#720000
+0!
+#730000
+1!
+b1011000010010 $
+#740000
+0!
+#750000
+1!
+#760000
+0!
+#770000
+1!
+b10111011100 $
+#780000
+0!
+#790000
+1!
+#800000
+0!
+#810000
+1!
+b100001011000 $
+#820000
+0!
+#830000
+1!
+#840000
+0!
+#850000
+1!
+b111111000101 $
+#860000
+0!
+#870000
+1!
+#880000
+0!
+#890000
+1!
+b100011000110 $
+#900000
+0!
+#910000
+1!
+#920000
+0!
+#930000
+1!
+b10111000010 $
+#940000
+0!
+#950000
+1!
+#960000
+0!
+#970000
+1!
+b111101010111 $
+#980000
+0!
+#990000
+1!
+#1000000

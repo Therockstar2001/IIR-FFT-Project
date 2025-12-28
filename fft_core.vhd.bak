@@ -1,0 +1,111 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity fft4_core is
+  port (
+    clk          : in  std_logic;
+    rst          : in  std_logic;
+    sample_valid : in  std_logic;                 -- assert for 4 successive samples
+    x_in         : in  signed(15 downto 0);       -- real input stream
+    out_valid    : out std_logic;
+    bin_idx      : out unsigned(1 downto 0);      -- 0..3
+    y_re         : out signed(15 downto 0);       -- FFT real
+    y_im         : out signed(15 downto 0)        -- FFT imag
+  );
+end entity;
+
+architecture rtl of fft4_core is
+  type vec4 is array(0 to 3) of signed(15 downto 0);
+
+  signal xbuf       : vec4 := (others => (others => '0'));
+  signal wr_ptr     : unsigned(1 downto 0) := (others => '0');
+  signal frame_ready: std_logic := '0';  -- renamed to avoid multi-driver
+  signal frame_latch: std_logic := '0';  -- internal edge detect
+
+  -- stage intermediates (18-bit headroom)
+  signal a0,a1,a2,a3 : signed(17 downto 0) := (others=>'0');
+
+  -- output sequencing
+  signal o_valid : std_logic := '0';
+  signal o_idx   : unsigned(1 downto 0) := (others=>'0');
+  signal o_re, o_im : signed(17 downto 0) := (others=>'0');
+begin
+
+  --------------------------------------------------------------------
+  -- SAMPLE COLLECTION
+  --------------------------------------------------------------------
+  process(clk)
+  begin
+    if rising_edge(clk) then
+      if rst='1' then
+        wr_ptr      <= (others=>'0');
+        frame_ready <= '0';
+      else
+        if sample_valid='1' then
+          xbuf(to_integer(wr_ptr)) <= x_in;
+          if wr_ptr = "11" then
+            wr_ptr      <= (others=>'0');
+            frame_ready <= '1';       -- latch frame done
+          else
+            wr_ptr      <= wr_ptr + 1;
+            frame_ready <= '0';
+          end if;
+        else
+          frame_ready <= '0';
+        end if;
+      end if;
+    end if;
+  end process;
+
+  --------------------------------------------------------------------
+  -- FFT PROCESSING & OUTPUT
+  --------------------------------------------------------------------
+  process(clk)
+  begin
+    if rising_edge(clk) then
+      if rst='1' then
+        o_valid <= '0';
+        o_idx   <= (others=>'0');
+        frame_latch <= '0';
+      else
+        -- detect frame_ready rising edge
+        frame_latch <= frame_ready;
+
+        if (frame_ready='1' and frame_latch='0') then
+          -- Stage 1 butterflies
+          a0 <= resize(xbuf(0),18) + resize(xbuf(2),18);
+          a1 <= resize(xbuf(0),18) - resize(xbuf(2),18);
+          a2 <= resize(xbuf(1),18) + resize(xbuf(3),18);
+          a3 <= resize(xbuf(1),18) - resize(xbuf(3),18);
+
+          -- start output stream next cycle
+          o_valid <= '1';
+          o_idx   <= (others=>'0');
+        elsif o_valid='1' then
+          o_idx <= o_idx + 1;
+          if o_idx = "11" then
+            o_valid <= '0';
+          end if;
+        end if;
+
+        -- Select bin by o_idx (N=4, DIT)
+        case o_idx is
+          when "00" =>  o_re <= a0 + a2;  o_im <= (others=>'0');
+          when "01" =>  o_re <= a1;        o_im <= -a3;
+          when "10" =>  o_re <= a0 - a2;   o_im <= (others=>'0');
+          when others => o_re <= a1;       o_im <= a3;
+        end case;
+      end if;
+    end if;
+  end process;
+
+  --------------------------------------------------------------------
+  -- OUTPUT MAPPING
+  --------------------------------------------------------------------
+  out_valid <= o_valid;
+  bin_idx   <= o_idx;
+  y_re      <= resize(o_re(17 downto 2),16);
+  y_im      <= resize(o_im(17 downto 2),16);
+
+end architecture;

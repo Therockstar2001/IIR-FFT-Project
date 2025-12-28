@@ -1,0 +1,909 @@
+Classic Timing Analyzer report for IIR_FFT_PROJECT
+Thu Dec 18 11:24:08 2025
+Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Parallel Compilation
+  6. Clock Setup: 'clk'
+  7. tsu
+  8. tco
+  9. tpd
+ 10. th
+ 11. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2009 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                         ;
++------------------------------+-------+---------------+----------------------------------+-------------------------+----------------------+------------+----------+--------------+
+; Type                         ; Slack ; Required Time ; Actual Time                      ; From                    ; To                   ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+-------+---------------+----------------------------------+-------------------------+----------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A   ; None          ; 4.592 ns                         ; rst                     ; fft_mag[15]          ; --         ; clk      ; 0            ;
+; Worst-case tco               ; N/A   ; None          ; 13.479 ns                        ; fft_mag[4]              ; y_out[4]             ; clk        ; --       ; 0            ;
+; Worst-case tpd               ; N/A   ; None          ; 14.201 ns                        ; mode                    ; y_out[4]             ; --         ; --       ; 0            ;
+; Worst-case th                ; N/A   ; None          ; -2.125 ns                        ; rst                     ; iir_core:u_iir|y2[2] ; --         ; clk      ; 0            ;
+; Clock Setup: 'clk'           ; N/A   ; None          ; 192.64 MHz ( period = 5.191 ns ) ; fft4_core:u_fft|o_im[4] ; fft_mag[15]          ; clk        ; clk      ; 0            ;
+; Total number of failed paths ;       ;               ;                                  ;                         ;                      ;            ;          ; 0            ;
++------------------------------+-------+---------------+----------------------------------+-------------------------+----------------------+------------+----------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                                                            ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                                                               ; Setting            ; From ; To ; Entity Name ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                                                          ; EP2C70F896C6       ;      ;    ;             ;
+; Timing Models                                                                                        ; Final              ;      ;    ;             ;
+; Default hold multicycle                                                                              ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                                                            ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                                                               ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                                                       ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                                                     ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                                                                ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                                                              ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                                                     ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                                                 ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                                                        ; Off                ;      ;    ;             ;
+; Minimum Core Junction Temperature                                                                    ; 0                  ;      ;    ;             ;
+; Maximum Core Junction Temperature                                                                    ; 85                 ;      ;    ;             ;
+; Number of source nodes to report per destination node                                                ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                                                                ; 10                 ;      ;    ;             ;
+; Number of paths to report                                                                            ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                                                         ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                                                               ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                                                           ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                                                         ; On                 ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis                                       ; Off                ;      ;    ;             ;
+; Reports worst-case timing paths for each clock domain and analysis                                   ; On                 ;      ;    ;             ;
+; Specifies the maximum number of worst-case timing paths to report for each clock domain and analysis ; 100                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation                                  ; Off                ;      ;    ;             ;
+; Output I/O Timing Endpoint                                                                           ; Near End           ;      ;    ;             ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; clk             ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'clk'                                                                                                                                                                                                                                          ;
++-----------------------------------------+-----------------------------------------------------+--------------------------+----------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack                                   ; Actual fmax (period)                                ; From                     ; To                   ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-----------------------------------------+-----------------------------------------------------+--------------------------+----------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A                                     ; 192.64 MHz ( period = 5.191 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.971 ns                ;
+; N/A                                     ; 195.31 MHz ( period = 5.120 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.900 ns                ;
+; N/A                                     ; 195.35 MHz ( period = 5.119 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.899 ns                ;
+; N/A                                     ; 196.19 MHz ( period = 5.097 ns )                    ; fft4_core:u_fft|o_im[9]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.880 ns                ;
+; N/A                                     ; 198.10 MHz ( period = 5.048 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.828 ns                ;
+; N/A                                     ; 198.22 MHz ( period = 5.045 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.825 ns                ;
+; N/A                                     ; 198.53 MHz ( period = 5.037 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.817 ns                ;
+; N/A                                     ; 198.97 MHz ( period = 5.026 ns )                    ; fft4_core:u_fft|o_im[9]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.809 ns                ;
+; N/A                                     ; 201.05 MHz ( period = 4.974 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.754 ns                ;
+; N/A                                     ; 201.37 MHz ( period = 4.966 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.746 ns                ;
+; N/A                                     ; 202.88 MHz ( period = 4.929 ns )                    ; fft4_core:u_fft|o_im[11] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.712 ns                ;
+; N/A                                     ; 203.33 MHz ( period = 4.918 ns )                    ; fft4_core:u_fft|o_im[8]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.698 ns                ;
+; N/A                                     ; 203.92 MHz ( period = 4.904 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.684 ns                ;
+; N/A                                     ; 204.25 MHz ( period = 4.896 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.676 ns                ;
+; N/A                                     ; 205.72 MHz ( period = 4.861 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.649 ns                ;
+; N/A                                     ; 205.85 MHz ( period = 4.858 ns )                    ; fft4_core:u_fft|o_im[11] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.641 ns                ;
+; N/A                                     ; 205.93 MHz ( period = 4.856 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.636 ns                ;
+; N/A                                     ; 206.31 MHz ( period = 4.847 ns )                    ; fft4_core:u_fft|o_im[8]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.627 ns                ;
+; N/A                                     ; 206.91 MHz ( period = 4.833 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.613 ns                ;
+; N/A                                     ; 207.25 MHz ( period = 4.825 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.605 ns                ;
+; N/A                                     ; 207.30 MHz ( period = 4.824 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.604 ns                ;
+; N/A                                     ; 207.43 MHz ( period = 4.821 ns )                    ; iir_core:u_iir|y1[1]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.606 ns                ;
+; N/A                                     ; 208.38 MHz ( period = 4.799 ns )                    ; fft4_core:u_fft|o_im[9]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.582 ns                ;
+; N/A                                     ; 208.77 MHz ( period = 4.790 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.578 ns                ;
+; N/A                                     ; 208.99 MHz ( period = 4.785 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.565 ns                ;
+; N/A                                     ; 210.30 MHz ( period = 4.755 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.543 ns                ;
+; N/A                                     ; 210.35 MHz ( period = 4.754 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.534 ns                ;
+; N/A                                     ; 210.39 MHz ( period = 4.753 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.533 ns                ;
+; N/A                                     ; 210.53 MHz ( period = 4.750 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.530 ns                ;
+; N/A                                     ; 211.01 MHz ( period = 4.739 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.519 ns                ;
+; N/A                                     ; 211.37 MHz ( period = 4.731 ns )                    ; fft4_core:u_fft|o_im[10] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.514 ns                ;
+; N/A                                     ; 211.51 MHz ( period = 4.728 ns )                    ; fft4_core:u_fft|o_im[9]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.511 ns                ;
+; N/A                                     ; 211.91 MHz ( period = 4.719 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.507 ns                ;
+; N/A                                     ; 213.36 MHz ( period = 4.687 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.475 ns                ;
+; N/A                                     ; 213.49 MHz ( period = 4.684 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.472 ns                ;
+; N/A                                     ; 213.54 MHz ( period = 4.683 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 213.58 MHz ( period = 4.682 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.462 ns                ;
+; N/A                                     ; 213.72 MHz ( period = 4.679 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.459 ns                ;
+; N/A                                     ; 214.22 MHz ( period = 4.668 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.448 ns                ;
+; N/A                                     ; 214.50 MHz ( period = 4.662 ns )                    ; iir_core:u_iir|y1[1]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.447 ns                ;
+; N/A                                     ; 214.59 MHz ( period = 4.660 ns )                    ; fft4_core:u_fft|o_im[10] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.443 ns                ;
+; N/A                                     ; 214.73 MHz ( period = 4.657 ns )                    ; fft4_core:u_fft|o_im[9]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.440 ns                ;
+; N/A                                     ; 215.15 MHz ( period = 4.648 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.436 ns                ;
+; N/A                                     ; 215.94 MHz ( period = 4.631 ns )                    ; fft4_core:u_fft|o_im[11] ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.414 ns                ;
+; N/A                                     ; 216.45 MHz ( period = 4.620 ns )                    ; fft4_core:u_fft|o_im[8]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.400 ns                ;
+; N/A                                     ; 216.64 MHz ( period = 4.616 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.404 ns                ;
+; N/A                                     ; 216.78 MHz ( period = 4.613 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.401 ns                ;
+; N/A                                     ; 216.83 MHz ( period = 4.612 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.392 ns                ;
+; N/A                                     ; 216.87 MHz ( period = 4.611 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.391 ns                ;
+; N/A                                     ; 216.97 MHz ( period = 4.609 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.389 ns                ;
+; N/A                                     ; 217.01 MHz ( period = 4.608 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.388 ns                ;
+; N/A                                     ; 217.53 MHz ( period = 4.597 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.377 ns                ;
+; N/A                                     ; 217.72 MHz ( period = 4.593 ns )                    ; iir_core:u_iir|y2[5]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.372 ns                ;
+; N/A                                     ; 217.82 MHz ( period = 4.591 ns )                    ; iir_core:u_iir|y1[1]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 4.376 ns                ;
+; N/A                                     ; 217.82 MHz ( period = 4.591 ns )                    ; fft4_core:u_fft|o_im[12] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.374 ns                ;
+; N/A                                     ; 218.48 MHz ( period = 4.577 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.365 ns                ;
+; N/A                                     ; 219.30 MHz ( period = 4.560 ns )                    ; fft4_core:u_fft|o_im[11] ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.343 ns                ;
+; N/A                                     ; 219.39 MHz ( period = 4.558 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.338 ns                ;
+; N/A                                     ; 219.83 MHz ( period = 4.549 ns )                    ; fft4_core:u_fft|o_im[8]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.329 ns                ;
+; N/A                                     ; 219.93 MHz ( period = 4.547 ns )                    ; fft4_core:u_fft|o_im[9]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.330 ns                ;
+; N/A                                     ; 220.02 MHz ( period = 4.545 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.333 ns                ;
+; N/A                                     ; 220.17 MHz ( period = 4.542 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.330 ns                ;
+; N/A                                     ; 220.22 MHz ( period = 4.541 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 4.321 ns                ;
+; N/A                                     ; 220.26 MHz ( period = 4.540 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.320 ns                ;
+; N/A                                     ; 220.36 MHz ( period = 4.538 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.318 ns                ;
+; N/A                                     ; 220.41 MHz ( period = 4.537 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.317 ns                ;
+; N/A                                     ; 220.56 MHz ( period = 4.534 ns )                    ; iir_core:u_iir|y2[2]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.314 ns                ;
+; N/A                                     ; 221.04 MHz ( period = 4.524 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.304 ns                ;
+; N/A                                     ; 221.19 MHz ( period = 4.521 ns )                    ; fft4_core:u_fft|o_im[13] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.304 ns                ;
+; N/A                                     ; 221.24 MHz ( period = 4.520 ns )                    ; fft4_core:u_fft|o_im[12] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.303 ns                ;
+; N/A                                     ; 221.48 MHz ( period = 4.515 ns )                    ; iir_core:u_iir|y1[2]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.296 ns                ;
+; N/A                                     ; 221.93 MHz ( period = 4.506 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.294 ns                ;
+; N/A                                     ; 222.37 MHz ( period = 4.497 ns )                    ; iir_core:u_iir|y1[1]     ; iir_core:u_iir|y[11] ; clk        ; clk      ; None                        ; None                      ; 4.282 ns                ;
+; N/A                                     ; 222.67 MHz ( period = 4.491 ns )                    ; iir_core:u_iir|y1[6]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.276 ns                ;
+; N/A                                     ; 222.77 MHz ( period = 4.489 ns )                    ; fft4_core:u_fft|o_im[11] ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.272 ns                ;
+; N/A                                     ; 222.87 MHz ( period = 4.487 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.267 ns                ;
+; N/A                                     ; 222.87 MHz ( period = 4.487 ns )                    ; fft4_core:u_fft|o_re[8]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.280 ns                ;
+; N/A                                     ; 223.11 MHz ( period = 4.482 ns )                    ; fft4_core:u_fft|o_im[14] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.265 ns                ;
+; N/A                                     ; 223.31 MHz ( period = 4.478 ns )                    ; fft4_core:u_fft|o_im[8]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.258 ns                ;
+; N/A                                     ; 223.51 MHz ( period = 4.474 ns )                    ; iir_core:u_iir|y1[7]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.259 ns                ;
+; N/A                                     ; 223.51 MHz ( period = 4.474 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.262 ns                ;
+; N/A                                     ; 223.51 MHz ( period = 4.474 ns )                    ; fft4_core:u_fft|o_re[9]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.267 ns                ;
+; N/A                                     ; 223.66 MHz ( period = 4.471 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.259 ns                ;
+; N/A                                     ; 223.76 MHz ( period = 4.469 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 4.249 ns                ;
+; N/A                                     ; 223.86 MHz ( period = 4.467 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.247 ns                ;
+; N/A                                     ; 223.91 MHz ( period = 4.466 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.246 ns                ;
+; N/A                                     ; 224.57 MHz ( period = 4.453 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.233 ns                ;
+; N/A                                     ; 224.67 MHz ( period = 4.451 ns )                    ; iir_core:u_iir|y2[7]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.236 ns                ;
+; N/A                                     ; 224.67 MHz ( period = 4.451 ns )                    ; fft4_core:u_fft|o_re[5]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.239 ns                ;
+; N/A                                     ; 224.72 MHz ( period = 4.450 ns )                    ; fft4_core:u_fft|o_im[13] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.233 ns                ;
+; N/A                                     ; 225.12 MHz ( period = 4.442 ns )                    ; iir_core:u_iir|y2[3]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.221 ns                ;
+; N/A                                     ; 225.38 MHz ( period = 4.437 ns )                    ; iir_core:u_iir|y1[3]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.218 ns                ;
+; N/A                                     ; 225.43 MHz ( period = 4.436 ns )                    ; fft4_core:u_fft|o_re[11] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.229 ns                ;
+; N/A                                     ; 225.48 MHz ( period = 4.435 ns )                    ; iir_core:u_iir|y1[9]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.221 ns                ;
+; N/A                                     ; 225.48 MHz ( period = 4.435 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.223 ns                ;
+; N/A                                     ; 225.53 MHz ( period = 4.434 ns )                    ; iir_core:u_iir|y2[5]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.213 ns                ;
+; N/A                                     ; 225.58 MHz ( period = 4.433 ns )                    ; fft4_core:u_fft|o_im[10] ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.216 ns                ;
+; N/A                                     ; 225.94 MHz ( period = 4.426 ns )                    ; iir_core:u_iir|y1[1]     ; iir_core:u_iir|y[10] ; clk        ; clk      ; None                        ; None                      ; 4.211 ns                ;
+; N/A                                     ; 226.45 MHz ( period = 4.416 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.196 ns                ;
+; N/A                                     ; 226.45 MHz ( period = 4.416 ns )                    ; fft4_core:u_fft|o_re[8]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.209 ns                ;
+; N/A                                     ; 226.71 MHz ( period = 4.411 ns )                    ; fft4_core:u_fft|o_im[14] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.194 ns                ;
+; N/A                                     ; 227.12 MHz ( period = 4.403 ns )                    ; iir_core:u_iir|y2[4]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.182 ns                ;
+; N/A                                     ; 227.12 MHz ( period = 4.403 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.191 ns                ;
+; N/A                                     ; 227.12 MHz ( period = 4.403 ns )                    ; fft4_core:u_fft|o_re[9]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.196 ns                ;
+; N/A                                     ; 227.27 MHz ( period = 4.400 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.188 ns                ;
+; N/A                                     ; 227.48 MHz ( period = 4.396 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.176 ns                ;
+; N/A                                     ; 227.53 MHz ( period = 4.395 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 4.175 ns                ;
+; N/A                                     ; 228.21 MHz ( period = 4.382 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[7]           ; clk        ; clk      ; None                        ; None                      ; 4.162 ns                ;
+; N/A                                     ; 228.21 MHz ( period = 4.382 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 4.162 ns                ;
+; N/A                                     ; 228.31 MHz ( period = 4.380 ns )                    ; fft4_core:u_fft|o_re[5]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.168 ns                ;
+; N/A                                     ; 228.57 MHz ( period = 4.375 ns )                    ; iir_core:u_iir|y2[2]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.155 ns                ;
+; N/A                                     ; 228.62 MHz ( period = 4.374 ns )                    ; iir_core:u_iir|y1[8]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.160 ns                ;
+; N/A                                     ; 228.73 MHz ( period = 4.372 ns )                    ; fft4_core:u_fft|o_re[6]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.160 ns                ;
+; N/A                                     ; 228.94 MHz ( period = 4.368 ns )                    ; fft4_core:u_fft|o_im[8]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.148 ns                ;
+; N/A                                     ; 229.10 MHz ( period = 4.365 ns )                    ; fft4_core:u_fft|o_re[11] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.158 ns                ;
+; N/A                                     ; 229.15 MHz ( period = 4.364 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 4.152 ns                ;
+; N/A                                     ; 229.20 MHz ( period = 4.363 ns )                    ; iir_core:u_iir|y2[5]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 4.142 ns                ;
+; N/A                                     ; 229.25 MHz ( period = 4.362 ns )                    ; fft4_core:u_fft|o_im[10] ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.145 ns                ;
+; N/A                                     ; 229.25 MHz ( period = 4.362 ns )                    ; fft4_core:u_fft|o_re[12] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.155 ns                ;
+; N/A                                     ; 229.57 MHz ( period = 4.356 ns )                    ; iir_core:u_iir|y1[2]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.137 ns                ;
+; N/A                                     ; 230.15 MHz ( period = 4.345 ns )                    ; fft4_core:u_fft|o_re[8]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.138 ns                ;
+; N/A                                     ; 230.26 MHz ( period = 4.343 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.123 ns                ;
+; N/A                                     ; 230.57 MHz ( period = 4.337 ns )                    ; fft4_core:u_fft|o_im[16] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.120 ns                ;
+; N/A                                     ; 230.84 MHz ( period = 4.332 ns )                    ; iir_core:u_iir|y1[6]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.117 ns                ;
+; N/A                                     ; 230.84 MHz ( period = 4.332 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 4.120 ns                ;
+; N/A                                     ; 230.84 MHz ( period = 4.332 ns )                    ; fft4_core:u_fft|o_re[9]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.125 ns                ;
+; N/A                                     ; 230.95 MHz ( period = 4.330 ns )                    ; fft4_core:u_fft|o_im[15] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.113 ns                ;
+; N/A                                     ; 231.00 MHz ( period = 4.329 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.117 ns                ;
+; N/A                                     ; 231.05 MHz ( period = 4.328 ns )                    ; iir_core:u_iir|y1[4]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.109 ns                ;
+; N/A                                     ; 231.21 MHz ( period = 4.325 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.105 ns                ;
+; N/A                                     ; 231.70 MHz ( period = 4.316 ns )                    ; fft4_core:u_fft|o_re[10] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.109 ns                ;
+; N/A                                     ; 231.75 MHz ( period = 4.315 ns )                    ; iir_core:u_iir|y1[7]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.100 ns                ;
+; N/A                                     ; 231.96 MHz ( period = 4.311 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[6]           ; clk        ; clk      ; None                        ; None                      ; 4.091 ns                ;
+; N/A                                     ; 232.02 MHz ( period = 4.310 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[7]           ; clk        ; clk      ; None                        ; None                      ; 4.090 ns                ;
+; N/A                                     ; 232.07 MHz ( period = 4.309 ns )                    ; fft4_core:u_fft|o_re[5]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.097 ns                ;
+; N/A                                     ; 232.29 MHz ( period = 4.305 ns )                    ; fft4_core:u_fft|o_im[17] ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.088 ns                ;
+; N/A                                     ; 232.34 MHz ( period = 4.304 ns )                    ; iir_core:u_iir|y2[2]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 4.084 ns                ;
+; N/A                                     ; 232.50 MHz ( period = 4.301 ns )                    ; fft4_core:u_fft|o_re[6]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.089 ns                ;
+; N/A                                     ; 232.88 MHz ( period = 4.294 ns )                    ; fft4_core:u_fft|o_re[11] ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.087 ns                ;
+; N/A                                     ; 232.99 MHz ( period = 4.292 ns )                    ; iir_core:u_iir|y2[7]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.077 ns                ;
+; N/A                                     ; 233.05 MHz ( period = 4.291 ns )                    ; fft4_core:u_fft|o_im[10] ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 4.074 ns                ;
+; N/A                                     ; 233.05 MHz ( period = 4.291 ns )                    ; fft4_core:u_fft|o_re[12] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.084 ns                ;
+; N/A                                     ; 233.05 MHz ( period = 4.291 ns )                    ; fft4_core:u_fft|o_re[7]  ; fft_mag[15]          ; clk        ; clk      ; None                        ; None                      ; 4.079 ns                ;
+; N/A                                     ; 233.37 MHz ( period = 4.285 ns )                    ; iir_core:u_iir|y1[2]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 4.066 ns                ;
+; N/A                                     ; 233.48 MHz ( period = 4.283 ns )                    ; iir_core:u_iir|y2[3]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.062 ns                ;
+; N/A                                     ; 233.75 MHz ( period = 4.278 ns )                    ; iir_core:u_iir|y1[3]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.059 ns                ;
+; N/A                                     ; 233.86 MHz ( period = 4.276 ns )                    ; iir_core:u_iir|y1[9]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.062 ns                ;
+; N/A                                     ; 233.97 MHz ( period = 4.274 ns )                    ; fft4_core:u_fft|o_re[8]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.067 ns                ;
+; N/A                                     ; 234.08 MHz ( period = 4.272 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.052 ns                ;
+; N/A                                     ; 234.25 MHz ( period = 4.269 ns )                    ; iir_core:u_iir|y2[5]     ; iir_core:u_iir|y[11] ; clk        ; clk      ; None                        ; None                      ; 4.048 ns                ;
+; N/A                                     ; 234.58 MHz ( period = 4.263 ns )                    ; iir_core:u_iir|y2[6]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.048 ns                ;
+; N/A                                     ; 234.69 MHz ( period = 4.261 ns )                    ; iir_core:u_iir|y1[6]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 4.046 ns                ;
+; N/A                                     ; 234.69 MHz ( period = 4.261 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.049 ns                ;
+; N/A                                     ; 234.69 MHz ( period = 4.261 ns )                    ; fft4_core:u_fft|o_re[9]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.054 ns                ;
+; N/A                                     ; 234.85 MHz ( period = 4.258 ns )                    ; fft4_core:u_fft|o_re[3]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 4.046 ns                ;
+; N/A                                     ; 234.91 MHz ( period = 4.257 ns )                    ; iir_core:u_iir|y1[5]     ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.038 ns                ;
+; N/A                                     ; 235.07 MHz ( period = 4.254 ns )                    ; fft4_core:u_fft|o_im[5]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 4.034 ns                ;
+; N/A                                     ; 235.29 MHz ( period = 4.250 ns )                    ; fft4_core:u_fft|o_im[12] ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.033 ns                ;
+; N/A                                     ; 235.57 MHz ( period = 4.245 ns )                    ; fft4_core:u_fft|o_re[10] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.038 ns                ;
+; N/A                                     ; 235.63 MHz ( period = 4.244 ns )                    ; iir_core:u_iir|y1[7]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 4.029 ns                ;
+; N/A                                     ; 235.63 MHz ( period = 4.244 ns )                    ; iir_core:u_iir|y2[4]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.023 ns                ;
+; N/A                                     ; 235.85 MHz ( period = 4.240 ns )                    ; fft4_core:u_fft|o_im[4]  ; fft_mag[5]           ; clk        ; clk      ; None                        ; None                      ; 4.020 ns                ;
+; N/A                                     ; 235.90 MHz ( period = 4.239 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[6]           ; clk        ; clk      ; None                        ; None                      ; 4.019 ns                ;
+; N/A                                     ; 235.96 MHz ( period = 4.238 ns )                    ; fft4_core:u_fft|o_re[5]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.026 ns                ;
+; N/A                                     ; 236.07 MHz ( period = 4.236 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[7]           ; clk        ; clk      ; None                        ; None                      ; 4.016 ns                ;
+; N/A                                     ; 236.18 MHz ( period = 4.234 ns )                    ; fft4_core:u_fft|o_im[17] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.017 ns                ;
+; N/A                                     ; 236.41 MHz ( period = 4.230 ns )                    ; iir_core:u_iir|y2[10]    ; iir_core:u_iir|y[15] ; clk        ; clk      ; None                        ; None                      ; 4.009 ns                ;
+; N/A                                     ; 236.41 MHz ( period = 4.230 ns )                    ; fft4_core:u_fft|o_re[6]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.018 ns                ;
+; N/A                                     ; 236.74 MHz ( period = 4.224 ns )                    ; fft4_core:u_fft|o_im[9]  ; fft_mag[9]           ; clk        ; clk      ; None                        ; None                      ; 4.007 ns                ;
+; N/A                                     ; 236.80 MHz ( period = 4.223 ns )                    ; fft4_core:u_fft|o_im[7]  ; fft_mag[7]           ; clk        ; clk      ; None                        ; None                      ; 4.003 ns                ;
+; N/A                                     ; 236.80 MHz ( period = 4.223 ns )                    ; fft4_core:u_fft|o_re[11] ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 4.016 ns                ;
+; N/A                                     ; 236.91 MHz ( period = 4.221 ns )                    ; iir_core:u_iir|y2[7]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 4.006 ns                ;
+; N/A                                     ; 236.97 MHz ( period = 4.220 ns )                    ; fft4_core:u_fft|o_re[12] ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 4.013 ns                ;
+; N/A                                     ; 236.97 MHz ( period = 4.220 ns )                    ; fft4_core:u_fft|o_re[7]  ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 4.008 ns                ;
+; N/A                                     ; 237.25 MHz ( period = 4.215 ns )                    ; iir_core:u_iir|y1[8]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 4.001 ns                ;
+; N/A                                     ; 237.42 MHz ( period = 4.212 ns )                    ; iir_core:u_iir|y2[3]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 3.991 ns                ;
+; N/A                                     ; 237.47 MHz ( period = 4.211 ns )                    ; fft4_core:u_fft|o_im[15] ; fft_mag[14]          ; clk        ; clk      ; None                        ; None                      ; 3.994 ns                ;
+; N/A                                     ; 237.53 MHz ( period = 4.210 ns )                    ; iir_core:u_iir|y2[2]     ; iir_core:u_iir|y[11] ; clk        ; clk      ; None                        ; None                      ; 3.990 ns                ;
+; N/A                                     ; 237.70 MHz ( period = 4.207 ns )                    ; iir_core:u_iir|y1[3]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 3.988 ns                ;
+; N/A                                     ; 237.81 MHz ( period = 4.205 ns )                    ; iir_core:u_iir|y1[9]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 3.991 ns                ;
+; N/A                                     ; 237.81 MHz ( period = 4.205 ns )                    ; fft4_core:u_fft|o_re[2]  ; fft_mag[7]           ; clk        ; clk      ; None                        ; None                      ; 3.993 ns                ;
+; N/A                                     ; 238.04 MHz ( period = 4.201 ns )                    ; fft4_core:u_fft|o_im[6]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 3.981 ns                ;
+; N/A                                     ; 238.21 MHz ( period = 4.198 ns )                    ; iir_core:u_iir|y2[5]     ; iir_core:u_iir|y[10] ; clk        ; clk      ; None                        ; None                      ; 3.977 ns                ;
+; N/A                                     ; 238.61 MHz ( period = 4.191 ns )                    ; iir_core:u_iir|y1[2]     ; iir_core:u_iir|y[11] ; clk        ; clk      ; None                        ; None                      ; 3.972 ns                ;
+; N/A                                     ; 238.66 MHz ( period = 4.190 ns )                    ; fft4_core:u_fft|o_re[4]  ; fft_mag[8]           ; clk        ; clk      ; None                        ; None                      ; 3.978 ns                ;
+; N/A                                     ; 239.18 MHz ( period = 4.181 ns )                    ; fft4_core:u_fft|o_im[10] ; fft_mag[10]          ; clk        ; clk      ; None                        ; None                      ; 3.964 ns                ;
+; N/A                                     ; 239.29 MHz ( period = 4.179 ns )                    ; fft4_core:u_fft|o_im[12] ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 3.962 ns                ;
+; N/A                                     ; 239.58 MHz ( period = 4.174 ns )                    ; fft4_core:u_fft|o_re[10] ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 3.967 ns                ;
+; N/A                                     ; 239.64 MHz ( period = 4.173 ns )                    ; iir_core:u_iir|y2[4]     ; iir_core:u_iir|y[12] ; clk        ; clk      ; None                        ; None                      ; 3.952 ns                ;
+; N/A                                     ; 239.87 MHz ( period = 4.169 ns )                    ; iir_core:u_iir|y1[4]     ; iir_core:u_iir|y[13] ; clk        ; clk      ; None                        ; None                      ; 3.950 ns                ;
+; N/A                                     ; 239.92 MHz ( period = 4.168 ns )                    ; fft4_core:u_fft|o_im[2]  ; fft_mag[5]           ; clk        ; clk      ; None                        ; None                      ; 3.948 ns                ;
+; N/A                                     ; 239.98 MHz ( period = 4.167 ns )                    ; iir_core:u_iir|y1[6]     ; iir_core:u_iir|y[11] ; clk        ; clk      ; None                        ; None                      ; 3.952 ns                ;
+; N/A                                     ; 240.10 MHz ( period = 4.165 ns )                    ; iir_core:u_iir|y1[1]     ; iir_core:u_iir|y[9]  ; clk        ; clk      ; None                        ; None                      ; 3.950 ns                ;
+; N/A                                     ; 240.10 MHz ( period = 4.165 ns )                    ; fft4_core:u_fft|o_im[3]  ; fft_mag[6]           ; clk        ; clk      ; None                        ; None                      ; 3.945 ns                ;
+; N/A                                     ; 240.21 MHz ( period = 4.163 ns )                    ; fft4_core:u_fft|o_im[17] ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 3.946 ns                ;
+; N/A                                     ; 240.44 MHz ( period = 4.159 ns )                    ; fft4_core:u_fft|o_re[6]  ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 3.947 ns                ;
+; N/A                                     ; 240.50 MHz ( period = 4.158 ns )                    ; fft4_core:u_fft|o_re[8]  ; fft_mag[11]          ; clk        ; clk      ; None                        ; None                      ; 3.951 ns                ;
+; N/A                                     ; 240.96 MHz ( period = 4.150 ns )                    ; iir_core:u_iir|y1[7]     ; iir_core:u_iir|y[11] ; clk        ; clk      ; None                        ; None                      ; 3.935 ns                ;
+; N/A                                     ; 241.02 MHz ( period = 4.149 ns )                    ; fft4_core:u_fft|o_re[12] ; fft_mag[12]          ; clk        ; clk      ; None                        ; None                      ; 3.942 ns                ;
+; N/A                                     ; 241.02 MHz ( period = 4.149 ns )                    ; fft4_core:u_fft|o_re[7]  ; fft_mag[13]          ; clk        ; clk      ; None                        ; None                      ; 3.937 ns                ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;                          ;                      ;            ;          ;                             ;                           ;                         ;
++-----------------------------------------+-----------------------------------------------------+--------------------------+----------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; tsu                                                                                                                                                        ;
++-----------------------------------------+-----------------------------------------------------+------------+------+-----------------------------+----------+
+; Slack                                   ; Required tsu                                        ; Actual tsu ; From ; To                          ; To Clock ;
++-----------------------------------------+-----------------------------------------------------+------------+------+-----------------------------+----------+
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[0]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[1]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[2]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[3]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[4]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[5]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[6]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[7]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[8]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[9]                  ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[10]                 ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[11]                 ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[12]                 ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[13]                 ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[14]                 ; clk      ;
+; N/A                                     ; None                                                ; 4.592 ns   ; rst  ; fft_mag[15]                 ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[16]      ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[15]      ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[14]      ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[13]      ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[12]      ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[11]      ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[10]      ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[9]       ; clk      ;
+; N/A                                     ; None                                                ; 4.486 ns   ; rst  ; fft4_core:u_fft|a2[8]       ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][2]  ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][1]  ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][0]  ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][3]  ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][15] ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][14] ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][7]  ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][6]  ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][5]  ; clk      ;
+; N/A                                     ; None                                                ; 4.272 ns   ; rst  ; fft4_core:u_fft|xbuf[0][4]  ; clk      ;
+; N/A                                     ; None                                                ; 4.267 ns   ; rst  ; fft4_core:u_fft|xbuf[2][14] ; clk      ;
+; N/A                                     ; None                                                ; 4.267 ns   ; rst  ; fft4_core:u_fft|xbuf[2][13] ; clk      ;
+; N/A                                     ; None                                                ; 4.267 ns   ; rst  ; fft4_core:u_fft|xbuf[2][12] ; clk      ;
+; N/A                                     ; None                                                ; 4.267 ns   ; rst  ; fft4_core:u_fft|xbuf[2][11] ; clk      ;
+; N/A                                     ; None                                                ; 4.267 ns   ; rst  ; fft4_core:u_fft|xbuf[2][10] ; clk      ;
+; N/A                                     ; None                                                ; 4.267 ns   ; rst  ; fft4_core:u_fft|xbuf[2][9]  ; clk      ;
+; N/A                                     ; None                                                ; 4.267 ns   ; rst  ; fft4_core:u_fft|xbuf[2][8]  ; clk      ;
+; N/A                                     ; None                                                ; 4.254 ns   ; rst  ; fft4_core:u_fft|xbuf[2][15] ; clk      ;
+; N/A                                     ; None                                                ; 4.242 ns   ; rst  ; fft4_core:u_fft|xbuf[3][14] ; clk      ;
+; N/A                                     ; None                                                ; 4.242 ns   ; rst  ; fft4_core:u_fft|xbuf[3][13] ; clk      ;
+; N/A                                     ; None                                                ; 4.242 ns   ; rst  ; fft4_core:u_fft|xbuf[3][12] ; clk      ;
+; N/A                                     ; None                                                ; 4.242 ns   ; rst  ; fft4_core:u_fft|xbuf[3][11] ; clk      ;
+; N/A                                     ; None                                                ; 4.242 ns   ; rst  ; fft4_core:u_fft|xbuf[3][10] ; clk      ;
+; N/A                                     ; None                                                ; 4.242 ns   ; rst  ; fft4_core:u_fft|xbuf[3][9]  ; clk      ;
+; N/A                                     ; None                                                ; 4.242 ns   ; rst  ; fft4_core:u_fft|xbuf[3][8]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][2]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][1]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][0]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][3]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][7]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][6]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][5]  ; clk      ;
+; N/A                                     ; None                                                ; 4.231 ns   ; rst  ; fft4_core:u_fft|xbuf[3][4]  ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[16]      ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[15]      ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[14]      ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[13]      ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[12]      ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[11]      ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[10]      ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[9]       ; clk      ;
+; N/A                                     ; None                                                ; 4.211 ns   ; rst  ; fft4_core:u_fft|a3[8]       ; clk      ;
+; N/A                                     ; None                                                ; 4.204 ns   ; rst  ; fft4_core:u_fft|a1[2]       ; clk      ;
+; N/A                                     ; None                                                ; 4.204 ns   ; rst  ; fft4_core:u_fft|a1[3]       ; clk      ;
+; N/A                                     ; None                                                ; 4.204 ns   ; rst  ; fft4_core:u_fft|a1[4]       ; clk      ;
+; N/A                                     ; None                                                ; 4.204 ns   ; rst  ; fft4_core:u_fft|a1[5]       ; clk      ;
+; N/A                                     ; None                                                ; 4.204 ns   ; rst  ; fft4_core:u_fft|a1[6]       ; clk      ;
+; N/A                                     ; None                                                ; 4.204 ns   ; rst  ; fft4_core:u_fft|a1[7]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[2]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[1]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[0]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[3]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[7]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[6]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[5]       ; clk      ;
+; N/A                                     ; None                                                ; 4.198 ns   ; rst  ; fft4_core:u_fft|a3[4]       ; clk      ;
+; N/A                                     ; None                                                ; 4.028 ns   ; rst  ; fft4_core:u_fft|xbuf[3][15] ; clk      ;
+; N/A                                     ; None                                                ; 4.024 ns   ; rst  ; fft4_core:u_fft|xbuf[1][15] ; clk      ;
+; N/A                                     ; None                                                ; 4.024 ns   ; rst  ; fft4_core:u_fft|xbuf[1][12] ; clk      ;
+; N/A                                     ; None                                                ; 4.024 ns   ; rst  ; fft4_core:u_fft|xbuf[1][11] ; clk      ;
+; N/A                                     ; None                                                ; 4.024 ns   ; rst  ; fft4_core:u_fft|xbuf[1][8]  ; clk      ;
+; N/A                                     ; None                                                ; 4.024 ns   ; rst  ; fft4_core:u_fft|xbuf[1][7]  ; clk      ;
+; N/A                                     ; None                                                ; 4.024 ns   ; rst  ; fft4_core:u_fft|xbuf[1][6]  ; clk      ;
+; N/A                                     ; None                                                ; 4.021 ns   ; rst  ; fft4_core:u_fft|xbuf[1][14] ; clk      ;
+; N/A                                     ; None                                                ; 4.021 ns   ; rst  ; fft4_core:u_fft|xbuf[1][13] ; clk      ;
+; N/A                                     ; None                                                ; 4.021 ns   ; rst  ; fft4_core:u_fft|xbuf[1][10] ; clk      ;
+; N/A                                     ; None                                                ; 4.021 ns   ; rst  ; fft4_core:u_fft|xbuf[1][9]  ; clk      ;
+; N/A                                     ; None                                                ; 4.012 ns   ; rst  ; fft4_core:u_fft|xbuf[1][2]  ; clk      ;
+; N/A                                     ; None                                                ; 4.012 ns   ; rst  ; fft4_core:u_fft|xbuf[1][1]  ; clk      ;
+; N/A                                     ; None                                                ; 4.012 ns   ; rst  ; fft4_core:u_fft|xbuf[1][0]  ; clk      ;
+; N/A                                     ; None                                                ; 4.012 ns   ; rst  ; fft4_core:u_fft|xbuf[1][3]  ; clk      ;
+; N/A                                     ; None                                                ; 4.012 ns   ; rst  ; fft4_core:u_fft|xbuf[1][5]  ; clk      ;
+; N/A                                     ; None                                                ; 4.012 ns   ; rst  ; fft4_core:u_fft|xbuf[1][4]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][2]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][1]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][0]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][3]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][7]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][6]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][5]  ; clk      ;
+; N/A                                     ; None                                                ; 3.994 ns   ; rst  ; fft4_core:u_fft|xbuf[2][4]  ; clk      ;
+; N/A                                     ; None                                                ; 3.985 ns   ; rst  ; fft4_core:u_fft|xbuf[0][13] ; clk      ;
+; N/A                                     ; None                                                ; 3.985 ns   ; rst  ; fft4_core:u_fft|xbuf[0][12] ; clk      ;
+; N/A                                     ; None                                                ; 3.985 ns   ; rst  ; fft4_core:u_fft|xbuf[0][11] ; clk      ;
+; N/A                                     ; None                                                ; 3.985 ns   ; rst  ; fft4_core:u_fft|xbuf[0][10] ; clk      ;
+; N/A                                     ; None                                                ; 3.985 ns   ; rst  ; fft4_core:u_fft|xbuf[0][9]  ; clk      ;
+; N/A                                     ; None                                                ; 3.985 ns   ; rst  ; fft4_core:u_fft|xbuf[0][8]  ; clk      ;
+; N/A                                     ; None                                                ; 3.970 ns   ; rst  ; fft4_core:u_fft|a2[2]       ; clk      ;
+; N/A                                     ; None                                                ; 3.970 ns   ; rst  ; fft4_core:u_fft|a2[1]       ; clk      ;
+; N/A                                     ; None                                                ; 3.970 ns   ; rst  ; fft4_core:u_fft|a2[3]       ; clk      ;
+; N/A                                     ; None                                                ; 3.970 ns   ; rst  ; fft4_core:u_fft|a2[7]       ; clk      ;
+; N/A                                     ; None                                                ; 3.970 ns   ; rst  ; fft4_core:u_fft|a2[6]       ; clk      ;
+; N/A                                     ; None                                                ; 3.970 ns   ; rst  ; fft4_core:u_fft|a2[5]       ; clk      ;
+; N/A                                     ; None                                                ; 3.970 ns   ; rst  ; fft4_core:u_fft|a2[4]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[2]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[1]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[0]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[3]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[7]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[6]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[5]       ; clk      ;
+; N/A                                     ; None                                                ; 3.942 ns   ; rst  ; fft4_core:u_fft|a0[4]       ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[16]      ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[8]       ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[9]       ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[10]      ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[11]      ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[12]      ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[13]      ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[14]      ; clk      ;
+; N/A                                     ; None                                                ; 3.916 ns   ; rst  ; fft4_core:u_fft|a1[15]      ; clk      ;
+; N/A                                     ; None                                                ; 3.915 ns   ; rst  ; fft4_core:u_fft|o_idx[1]    ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[16]      ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[15]      ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[14]      ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[13]      ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[12]      ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[11]      ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[10]      ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[9]       ; clk      ;
+; N/A                                     ; None                                                ; 3.459 ns   ; rst  ; fft4_core:u_fft|a0[8]       ; clk      ;
+; N/A                                     ; None                                                ; 3.000 ns   ; rst  ; fft4_core:u_fft|o_re[2]     ; clk      ;
+; N/A                                     ; None                                                ; 3.000 ns   ; rst  ; fft4_core:u_fft|o_re[3]     ; clk      ;
+; N/A                                     ; None                                                ; 3.000 ns   ; rst  ; fft4_core:u_fft|o_re[4]     ; clk      ;
+; N/A                                     ; None                                                ; 3.000 ns   ; rst  ; fft4_core:u_fft|o_re[5]     ; clk      ;
+; N/A                                     ; None                                                ; 3.000 ns   ; rst  ; fft4_core:u_fft|o_re[6]     ; clk      ;
+; N/A                                     ; None                                                ; 3.000 ns   ; rst  ; fft4_core:u_fft|o_re[7]     ; clk      ;
+; N/A                                     ; None                                                ; 2.985 ns   ; rst  ; iir_core:u_iir|y2[8]        ; clk      ;
+; N/A                                     ; None                                                ; 2.985 ns   ; rst  ; iir_core:u_iir|y2[13]       ; clk      ;
+; N/A                                     ; None                                                ; 2.984 ns   ; rst  ; iir_core:u_iir|y2[4]        ; clk      ;
+; N/A                                     ; None                                                ; 2.983 ns   ; rst  ; iir_core:u_iir|y2[9]        ; clk      ;
+; N/A                                     ; None                                                ; 2.983 ns   ; rst  ; fft4_core:u_fft|wr_ptr[0]   ; clk      ;
+; N/A                                     ; None                                                ; 2.981 ns   ; rst  ; iir_core:u_iir|y1[15]       ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[17]    ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[9]     ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[10]    ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[11]    ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[12]    ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[13]    ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[14]    ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[15]    ; clk      ;
+; N/A                                     ; None                                                ; 2.974 ns   ; rst  ; fft4_core:u_fft|o_im[16]    ; clk      ;
+; N/A                                     ; None                                                ; 2.955 ns   ; rst  ; iir_core:u_iir|y2[3]        ; clk      ;
+; N/A                                     ; None                                                ; 2.953 ns   ; rst  ; fft4_core:u_fft|o_im[2]     ; clk      ;
+; N/A                                     ; None                                                ; 2.953 ns   ; rst  ; fft4_core:u_fft|o_im[3]     ; clk      ;
+; N/A                                     ; None                                                ; 2.953 ns   ; rst  ; fft4_core:u_fft|o_im[4]     ; clk      ;
+; N/A                                     ; None                                                ; 2.953 ns   ; rst  ; fft4_core:u_fft|o_im[5]     ; clk      ;
+; N/A                                     ; None                                                ; 2.953 ns   ; rst  ; fft4_core:u_fft|o_im[6]     ; clk      ;
+; N/A                                     ; None                                                ; 2.953 ns   ; rst  ; fft4_core:u_fft|o_im[7]     ; clk      ;
+; N/A                                     ; None                                                ; 2.953 ns   ; rst  ; fft4_core:u_fft|o_im[8]     ; clk      ;
+; N/A                                     ; None                                                ; 2.940 ns   ; rst  ; fft4_core:u_fft|o_idx[0]    ; clk      ;
+; N/A                                     ; None                                                ; 2.810 ns   ; rst  ; iir_core:u_iir|y2[10]       ; clk      ;
+; N/A                                     ; None                                                ; 2.810 ns   ; rst  ; iir_core:u_iir|y2[15]       ; clk      ;
+; N/A                                     ; None                                                ; 2.809 ns   ; rst  ; iir_core:u_iir|y2[5]        ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[17]    ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[8]     ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[9]     ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[10]    ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[11]    ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[12]    ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[13]    ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[14]    ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[15]    ; clk      ;
+; N/A                                     ; None                                                ; 2.743 ns   ; rst  ; fft4_core:u_fft|o_re[16]    ; clk      ;
+; N/A                                     ; None                                                ; 2.719 ns   ; rst  ; fft4_core:u_fft|frame_latch ; clk      ;
+; N/A                                     ; None                                                ; 2.716 ns   ; rst  ; iir_core:u_iir|y1[8]        ; clk      ;
+; N/A                                     ; None                                                ; 2.716 ns   ; rst  ; iir_core:u_iir|y1[10]       ; clk      ;
+; N/A                                     ; None                                                ; 2.716 ns   ; rst  ; iir_core:u_iir|y1[13]       ; clk      ;
+; N/A                                     ; None                                                ; 2.715 ns   ; rst  ; fft4_core:u_fft|frame_ready ; clk      ;
+; N/A                                     ; None                                                ; 2.703 ns   ; rst  ; iir_core:u_iir|y1[2]        ; clk      ;
+; N/A                                     ; None                                                ; 2.669 ns   ; rst  ; rom_addr[0]                 ; clk      ;
+; N/A                                     ; None                                                ; 2.669 ns   ; rst  ; rom_addr[1]                 ; clk      ;
+; N/A                                     ; None                                                ; 2.669 ns   ; rst  ; rom_addr[2]                 ; clk      ;
+; N/A                                     ; None                                                ; 2.669 ns   ; rst  ; rom_addr[3]                 ; clk      ;
+; N/A                                     ; None                                                ; 2.669 ns   ; rst  ; rom_addr[4]                 ; clk      ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;            ;      ;                             ;          ;
++-----------------------------------------+-----------------------------------------------------+------------+------+-----------------------------+----------+
+
+
++-----------------------------------------------------------------------------------+
+; tco                                                                               ;
++-------+--------------+------------+----------------------+-----------+------------+
+; Slack ; Required tco ; Actual tco ; From                 ; To        ; From Clock ;
++-------+--------------+------------+----------------------+-----------+------------+
+; N/A   ; None         ; 13.479 ns  ; fft_mag[4]           ; y_out[4]  ; clk        ;
+; N/A   ; None         ; 13.451 ns  ; fft_mag[2]           ; y_out[2]  ; clk        ;
+; N/A   ; None         ; 13.292 ns  ; fft_mag[3]           ; y_out[3]  ; clk        ;
+; N/A   ; None         ; 13.182 ns  ; iir_core:u_iir|y[5]  ; y_out[5]  ; clk        ;
+; N/A   ; None         ; 12.935 ns  ; iir_core:u_iir|y[4]  ; y_out[4]  ; clk        ;
+; N/A   ; None         ; 12.755 ns  ; iir_core:u_iir|y[3]  ; y_out[3]  ; clk        ;
+; N/A   ; None         ; 12.740 ns  ; fft_mag[5]           ; y_out[5]  ; clk        ;
+; N/A   ; None         ; 12.582 ns  ; iir_core:u_iir|y[2]  ; y_out[2]  ; clk        ;
+; N/A   ; None         ; 12.316 ns  ; fft_mag[1]           ; y_out[1]  ; clk        ;
+; N/A   ; None         ; 12.259 ns  ; iir_core:u_iir|y[15] ; y_out[15] ; clk        ;
+; N/A   ; None         ; 12.223 ns  ; fft_mag[6]           ; y_out[6]  ; clk        ;
+; N/A   ; None         ; 12.159 ns  ; iir_core:u_iir|y[1]  ; y_out[1]  ; clk        ;
+; N/A   ; None         ; 12.072 ns  ; fft_mag[12]          ; y_out[12] ; clk        ;
+; N/A   ; None         ; 12.013 ns  ; fft_mag[8]           ; y_out[8]  ; clk        ;
+; N/A   ; None         ; 11.948 ns  ; iir_core:u_iir|y[12] ; y_out[12] ; clk        ;
+; N/A   ; None         ; 11.894 ns  ; fft_mag[15]          ; y_out[15] ; clk        ;
+; N/A   ; None         ; 11.888 ns  ; iir_core:u_iir|y[6]  ; y_out[6]  ; clk        ;
+; N/A   ; None         ; 11.786 ns  ; fft_mag[0]           ; y_out[0]  ; clk        ;
+; N/A   ; None         ; 11.710 ns  ; fft_mag[7]           ; y_out[7]  ; clk        ;
+; N/A   ; None         ; 11.673 ns  ; fft_mag[13]          ; y_out[13] ; clk        ;
+; N/A   ; None         ; 11.651 ns  ; iir_core:u_iir|y[15] ; y_out[14] ; clk        ;
+; N/A   ; None         ; 11.645 ns  ; fft_mag[14]          ; y_out[14] ; clk        ;
+; N/A   ; None         ; 11.412 ns  ; iir_core:u_iir|y[7]  ; y_out[7]  ; clk        ;
+; N/A   ; None         ; 11.358 ns  ; fft_mag[11]          ; y_out[11] ; clk        ;
+; N/A   ; None         ; 11.205 ns  ; fft_mag[9]           ; y_out[9]  ; clk        ;
+; N/A   ; None         ; 11.154 ns  ; fft_mag[10]          ; y_out[10] ; clk        ;
+; N/A   ; None         ; 11.150 ns  ; iir_core:u_iir|y[8]  ; y_out[8]  ; clk        ;
+; N/A   ; None         ; 10.883 ns  ; iir_core:u_iir|y[11] ; y_out[11] ; clk        ;
+; N/A   ; None         ; 10.839 ns  ; iir_core:u_iir|y[13] ; y_out[13] ; clk        ;
+; N/A   ; None         ; 10.736 ns  ; iir_core:u_iir|y[9]  ; y_out[9]  ; clk        ;
+; N/A   ; None         ; 10.718 ns  ; iir_core:u_iir|y[0]  ; y_out[0]  ; clk        ;
+; N/A   ; None         ; 10.323 ns  ; iir_core:u_iir|y[10] ; y_out[10] ; clk        ;
++-------+--------------+------------+----------------------+-----------+------------+
+
+
++----------------------------------------------------------------+
+; tpd                                                            ;
++-------+-------------------+-----------------+------+-----------+
+; Slack ; Required P2P Time ; Actual P2P Time ; From ; To        ;
++-------+-------------------+-----------------+------+-----------+
+; N/A   ; None              ; 14.201 ns       ; mode ; y_out[4]  ;
+; N/A   ; None              ; 14.022 ns       ; mode ; y_out[3]  ;
+; N/A   ; None              ; 14.002 ns       ; mode ; y_out[2]  ;
+; N/A   ; None              ; 13.920 ns       ; mode ; y_out[5]  ;
+; N/A   ; None              ; 13.273 ns       ; mode ; y_out[12] ;
+; N/A   ; None              ; 13.193 ns       ; mode ; y_out[6]  ;
+; N/A   ; None              ; 13.150 ns       ; mode ; y_out[1]  ;
+; N/A   ; None              ; 12.805 ns       ; mode ; y_out[15] ;
+; N/A   ; None              ; 12.777 ns       ; mode ; y_out[8]  ;
+; N/A   ; None              ; 12.714 ns       ; mode ; y_out[7]  ;
+; N/A   ; None              ; 12.472 ns       ; mode ; y_out[13] ;
+; N/A   ; None              ; 12.375 ns       ; mode ; y_out[14] ;
+; N/A   ; None              ; 12.224 ns       ; mode ; y_out[9]  ;
+; N/A   ; None              ; 12.196 ns       ; mode ; y_out[11] ;
+; N/A   ; None              ; 12.141 ns       ; mode ; y_out[0]  ;
+; N/A   ; None              ; 11.954 ns       ; mode ; y_out[10] ;
++-------+-------------------+-----------------+------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; th                                                                                                                                                        ;
++-----------------------------------------+-----------------------------------------------------+-----------+------+-----------------------------+----------+
+; Minimum Slack                           ; Required th                                         ; Actual th ; From ; To                          ; To Clock ;
++-----------------------------------------+-----------------------------------------------------+-----------+------+-----------------------------+----------+
+; N/A                                     ; None                                                ; -2.125 ns ; rst  ; iir_core:u_iir|y2[2]        ; clk      ;
+; N/A                                     ; None                                                ; -2.206 ns ; rst  ; iir_core:u_iir|y2[11]       ; clk      ;
+; N/A                                     ; None                                                ; -2.206 ns ; rst  ; iir_core:u_iir|y2[12]       ; clk      ;
+; N/A                                     ; None                                                ; -2.207 ns ; rst  ; iir_core:u_iir|y1[11]       ; clk      ;
+; N/A                                     ; None                                                ; -2.208 ns ; rst  ; iir_core:u_iir|y1[7]        ; clk      ;
+; N/A                                     ; None                                                ; -2.212 ns ; rst  ; iir_core:u_iir|y1[1]        ; clk      ;
+; N/A                                     ; None                                                ; -2.213 ns ; rst  ; iir_core:u_iir|y1[6]        ; clk      ;
+; N/A                                     ; None                                                ; -2.213 ns ; rst  ; iir_core:u_iir|y2[7]        ; clk      ;
+; N/A                                     ; None                                                ; -2.213 ns ; rst  ; iir_core:u_iir|y1[12]       ; clk      ;
+; N/A                                     ; None                                                ; -2.215 ns ; rst  ; iir_core:u_iir|y2[6]        ; clk      ;
+; N/A                                     ; None                                                ; -2.296 ns ; rst  ; iir_core:u_iir|y1[5]        ; clk      ;
+; N/A                                     ; None                                                ; -2.298 ns ; rst  ; iir_core:u_iir|y1[4]        ; clk      ;
+; N/A                                     ; None                                                ; -2.299 ns ; rst  ; iir_core:u_iir|y1[3]        ; clk      ;
+; N/A                                     ; None                                                ; -2.312 ns ; rst  ; iir_core:u_iir|y1[9]        ; clk      ;
+; N/A                                     ; None                                                ; -2.421 ns ; rst  ; iir_core:u_iir|y[0]         ; clk      ;
+; N/A                                     ; None                                                ; -2.421 ns ; rst  ; iir_core:u_iir|y[3]         ; clk      ;
+; N/A                                     ; None                                                ; -2.421 ns ; rst  ; iir_core:u_iir|y[2]         ; clk      ;
+; N/A                                     ; None                                                ; -2.421 ns ; rst  ; iir_core:u_iir|y[4]         ; clk      ;
+; N/A                                     ; None                                                ; -2.421 ns ; rst  ; iir_core:u_iir|y[1]         ; clk      ;
+; N/A                                     ; None                                                ; -2.421 ns ; rst  ; iir_core:u_iir|y[5]         ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; rom_addr[0]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; rom_addr[1]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; rom_addr[2]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; rom_addr[3]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; rom_addr[4]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; rom_addr[5]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[6]         ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[7]         ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[8]         ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[9]         ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[10]        ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[11]        ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[12]        ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[13]        ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; iir_core:u_iir|y[15]        ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; fft4_core:u_fft|o_valid     ; clk      ;
+; N/A                                     ; None                                                ; -2.439 ns ; rst  ; fft4_core:u_fft|wr_ptr[1]   ; clk      ;
+; N/A                                     ; None                                                ; -2.473 ns ; rst  ; iir_core:u_iir|y1[2]        ; clk      ;
+; N/A                                     ; None                                                ; -2.485 ns ; rst  ; fft4_core:u_fft|frame_ready ; clk      ;
+; N/A                                     ; None                                                ; -2.486 ns ; rst  ; iir_core:u_iir|y1[8]        ; clk      ;
+; N/A                                     ; None                                                ; -2.486 ns ; rst  ; iir_core:u_iir|y1[10]       ; clk      ;
+; N/A                                     ; None                                                ; -2.486 ns ; rst  ; iir_core:u_iir|y1[13]       ; clk      ;
+; N/A                                     ; None                                                ; -2.489 ns ; rst  ; fft4_core:u_fft|frame_latch ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[17]    ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[8]     ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[9]     ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[10]    ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[11]    ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[12]    ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[13]    ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[14]    ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[15]    ; clk      ;
+; N/A                                     ; None                                                ; -2.513 ns ; rst  ; fft4_core:u_fft|o_re[16]    ; clk      ;
+; N/A                                     ; None                                                ; -2.579 ns ; rst  ; iir_core:u_iir|y2[5]        ; clk      ;
+; N/A                                     ; None                                                ; -2.580 ns ; rst  ; iir_core:u_iir|y2[10]       ; clk      ;
+; N/A                                     ; None                                                ; -2.580 ns ; rst  ; iir_core:u_iir|y2[15]       ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[0]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[1]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[2]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[3]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[4]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[5]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[6]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[7]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[8]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[9]                  ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[10]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[11]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[12]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[13]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[14]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.595 ns ; rst  ; fft_mag[15]                 ; clk      ;
+; N/A                                     ; None                                                ; -2.710 ns ; rst  ; fft4_core:u_fft|o_idx[0]    ; clk      ;
+; N/A                                     ; None                                                ; -2.723 ns ; rst  ; fft4_core:u_fft|o_im[2]     ; clk      ;
+; N/A                                     ; None                                                ; -2.723 ns ; rst  ; fft4_core:u_fft|o_im[3]     ; clk      ;
+; N/A                                     ; None                                                ; -2.723 ns ; rst  ; fft4_core:u_fft|o_im[4]     ; clk      ;
+; N/A                                     ; None                                                ; -2.723 ns ; rst  ; fft4_core:u_fft|o_im[5]     ; clk      ;
+; N/A                                     ; None                                                ; -2.723 ns ; rst  ; fft4_core:u_fft|o_im[6]     ; clk      ;
+; N/A                                     ; None                                                ; -2.723 ns ; rst  ; fft4_core:u_fft|o_im[7]     ; clk      ;
+; N/A                                     ; None                                                ; -2.723 ns ; rst  ; fft4_core:u_fft|o_im[8]     ; clk      ;
+; N/A                                     ; None                                                ; -2.725 ns ; rst  ; iir_core:u_iir|y2[3]        ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[17]    ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[9]     ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[10]    ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[11]    ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[12]    ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[13]    ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[14]    ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[15]    ; clk      ;
+; N/A                                     ; None                                                ; -2.744 ns ; rst  ; fft4_core:u_fft|o_im[16]    ; clk      ;
+; N/A                                     ; None                                                ; -2.751 ns ; rst  ; iir_core:u_iir|y1[15]       ; clk      ;
+; N/A                                     ; None                                                ; -2.753 ns ; rst  ; iir_core:u_iir|y2[9]        ; clk      ;
+; N/A                                     ; None                                                ; -2.753 ns ; rst  ; fft4_core:u_fft|wr_ptr[0]   ; clk      ;
+; N/A                                     ; None                                                ; -2.754 ns ; rst  ; iir_core:u_iir|y2[4]        ; clk      ;
+; N/A                                     ; None                                                ; -2.755 ns ; rst  ; iir_core:u_iir|y2[8]        ; clk      ;
+; N/A                                     ; None                                                ; -2.755 ns ; rst  ; iir_core:u_iir|y2[13]       ; clk      ;
+; N/A                                     ; None                                                ; -2.770 ns ; rst  ; fft4_core:u_fft|o_re[2]     ; clk      ;
+; N/A                                     ; None                                                ; -2.770 ns ; rst  ; fft4_core:u_fft|o_re[3]     ; clk      ;
+; N/A                                     ; None                                                ; -2.770 ns ; rst  ; fft4_core:u_fft|o_re[4]     ; clk      ;
+; N/A                                     ; None                                                ; -2.770 ns ; rst  ; fft4_core:u_fft|o_re[5]     ; clk      ;
+; N/A                                     ; None                                                ; -2.770 ns ; rst  ; fft4_core:u_fft|o_re[6]     ; clk      ;
+; N/A                                     ; None                                                ; -2.770 ns ; rst  ; fft4_core:u_fft|o_re[7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[16]      ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[15]      ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[14]      ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[13]      ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[12]      ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[11]      ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[10]      ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[9]       ; clk      ;
+; N/A                                     ; None                                                ; -3.229 ns ; rst  ; fft4_core:u_fft|a0[8]       ; clk      ;
+; N/A                                     ; None                                                ; -3.685 ns ; rst  ; fft4_core:u_fft|o_idx[1]    ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[16]      ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[8]       ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[9]       ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[10]      ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[11]      ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[12]      ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[13]      ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[14]      ; clk      ;
+; N/A                                     ; None                                                ; -3.686 ns ; rst  ; fft4_core:u_fft|a1[15]      ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[2]       ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[1]       ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[0]       ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[3]       ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[7]       ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[6]       ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[5]       ; clk      ;
+; N/A                                     ; None                                                ; -3.712 ns ; rst  ; fft4_core:u_fft|a0[4]       ; clk      ;
+; N/A                                     ; None                                                ; -3.740 ns ; rst  ; fft4_core:u_fft|a2[2]       ; clk      ;
+; N/A                                     ; None                                                ; -3.740 ns ; rst  ; fft4_core:u_fft|a2[1]       ; clk      ;
+; N/A                                     ; None                                                ; -3.740 ns ; rst  ; fft4_core:u_fft|a2[3]       ; clk      ;
+; N/A                                     ; None                                                ; -3.740 ns ; rst  ; fft4_core:u_fft|a2[7]       ; clk      ;
+; N/A                                     ; None                                                ; -3.740 ns ; rst  ; fft4_core:u_fft|a2[6]       ; clk      ;
+; N/A                                     ; None                                                ; -3.740 ns ; rst  ; fft4_core:u_fft|a2[5]       ; clk      ;
+; N/A                                     ; None                                                ; -3.740 ns ; rst  ; fft4_core:u_fft|a2[4]       ; clk      ;
+; N/A                                     ; None                                                ; -3.755 ns ; rst  ; fft4_core:u_fft|xbuf[0][13] ; clk      ;
+; N/A                                     ; None                                                ; -3.755 ns ; rst  ; fft4_core:u_fft|xbuf[0][12] ; clk      ;
+; N/A                                     ; None                                                ; -3.755 ns ; rst  ; fft4_core:u_fft|xbuf[0][11] ; clk      ;
+; N/A                                     ; None                                                ; -3.755 ns ; rst  ; fft4_core:u_fft|xbuf[0][10] ; clk      ;
+; N/A                                     ; None                                                ; -3.755 ns ; rst  ; fft4_core:u_fft|xbuf[0][9]  ; clk      ;
+; N/A                                     ; None                                                ; -3.755 ns ; rst  ; fft4_core:u_fft|xbuf[0][8]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][2]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][1]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][0]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][3]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][7]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][6]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][5]  ; clk      ;
+; N/A                                     ; None                                                ; -3.764 ns ; rst  ; fft4_core:u_fft|xbuf[2][4]  ; clk      ;
+; N/A                                     ; None                                                ; -3.782 ns ; rst  ; fft4_core:u_fft|xbuf[1][2]  ; clk      ;
+; N/A                                     ; None                                                ; -3.782 ns ; rst  ; fft4_core:u_fft|xbuf[1][1]  ; clk      ;
+; N/A                                     ; None                                                ; -3.782 ns ; rst  ; fft4_core:u_fft|xbuf[1][0]  ; clk      ;
+; N/A                                     ; None                                                ; -3.782 ns ; rst  ; fft4_core:u_fft|xbuf[1][3]  ; clk      ;
+; N/A                                     ; None                                                ; -3.782 ns ; rst  ; fft4_core:u_fft|xbuf[1][5]  ; clk      ;
+; N/A                                     ; None                                                ; -3.782 ns ; rst  ; fft4_core:u_fft|xbuf[1][4]  ; clk      ;
+; N/A                                     ; None                                                ; -3.791 ns ; rst  ; fft4_core:u_fft|xbuf[1][14] ; clk      ;
+; N/A                                     ; None                                                ; -3.791 ns ; rst  ; fft4_core:u_fft|xbuf[1][13] ; clk      ;
+; N/A                                     ; None                                                ; -3.791 ns ; rst  ; fft4_core:u_fft|xbuf[1][10] ; clk      ;
+; N/A                                     ; None                                                ; -3.791 ns ; rst  ; fft4_core:u_fft|xbuf[1][9]  ; clk      ;
+; N/A                                     ; None                                                ; -3.794 ns ; rst  ; fft4_core:u_fft|xbuf[1][15] ; clk      ;
+; N/A                                     ; None                                                ; -3.794 ns ; rst  ; fft4_core:u_fft|xbuf[1][12] ; clk      ;
+; N/A                                     ; None                                                ; -3.794 ns ; rst  ; fft4_core:u_fft|xbuf[1][11] ; clk      ;
+; N/A                                     ; None                                                ; -3.794 ns ; rst  ; fft4_core:u_fft|xbuf[1][8]  ; clk      ;
+; N/A                                     ; None                                                ; -3.794 ns ; rst  ; fft4_core:u_fft|xbuf[1][7]  ; clk      ;
+; N/A                                     ; None                                                ; -3.794 ns ; rst  ; fft4_core:u_fft|xbuf[1][6]  ; clk      ;
+; N/A                                     ; None                                                ; -3.798 ns ; rst  ; fft4_core:u_fft|xbuf[3][15] ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[2]       ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[1]       ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[0]       ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[3]       ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[7]       ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[6]       ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[5]       ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; rst  ; fft4_core:u_fft|a3[4]       ; clk      ;
+; N/A                                     ; None                                                ; -3.974 ns ; rst  ; fft4_core:u_fft|a1[2]       ; clk      ;
+; N/A                                     ; None                                                ; -3.974 ns ; rst  ; fft4_core:u_fft|a1[3]       ; clk      ;
+; N/A                                     ; None                                                ; -3.974 ns ; rst  ; fft4_core:u_fft|a1[4]       ; clk      ;
+; N/A                                     ; None                                                ; -3.974 ns ; rst  ; fft4_core:u_fft|a1[5]       ; clk      ;
+; N/A                                     ; None                                                ; -3.974 ns ; rst  ; fft4_core:u_fft|a1[6]       ; clk      ;
+; N/A                                     ; None                                                ; -3.974 ns ; rst  ; fft4_core:u_fft|a1[7]       ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[16]      ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[15]      ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[14]      ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[13]      ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[12]      ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[11]      ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[10]      ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[9]       ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; rst  ; fft4_core:u_fft|a3[8]       ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][2]  ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][1]  ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][0]  ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][3]  ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][7]  ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][6]  ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][5]  ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; rst  ; fft4_core:u_fft|xbuf[3][4]  ; clk      ;
+; N/A                                     ; None                                                ; -4.012 ns ; rst  ; fft4_core:u_fft|xbuf[3][14] ; clk      ;
+; N/A                                     ; None                                                ; -4.012 ns ; rst  ; fft4_core:u_fft|xbuf[3][13] ; clk      ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;           ;      ;                             ;          ;
++-----------------------------------------+-----------------------------------------------------+-----------+------+-----------------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 9.1 Build 222 10/21/2009 SJ Web Edition
+    Info: Processing started: Thu Dec 18 11:24:08 2025
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off IIR_FFT_PROJECT -c IIR_FFT_PROJECT --timing_analysis_only
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "clk" is an undefined clock
+Warning: Found 1 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected ripple clock "slow_clk" as buffer
+Info: Clock "clk" has Internal fmax of 192.64 MHz between source register "fft4_core:u_fft|o_im[4]" and destination register "fft_mag[15]" (period= 5.191 ns)
+    Info: + Longest register to register delay is 4.971 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X43_Y23_N23; Fanout = 3; REG Node = 'fft4_core:u_fft|o_im[4]'
+        Info: 2: + IC(0.723 ns) + CELL(0.393 ns) = 1.116 ns; Loc. = LCCOMB_X42_Y23_N4; Fanout = 2; COMB Node = 'Add3~6'
+        Info: 3: + IC(0.000 ns) + CELL(0.071 ns) = 1.187 ns; Loc. = LCCOMB_X42_Y23_N6; Fanout = 2; COMB Node = 'Add3~9'
+        Info: 4: + IC(0.000 ns) + CELL(0.071 ns) = 1.258 ns; Loc. = LCCOMB_X42_Y23_N8; Fanout = 2; COMB Node = 'Add3~12'
+        Info: 5: + IC(0.000 ns) + CELL(0.071 ns) = 1.329 ns; Loc. = LCCOMB_X42_Y23_N10; Fanout = 2; COMB Node = 'Add3~15'
+        Info: 6: + IC(0.000 ns) + CELL(0.071 ns) = 1.400 ns; Loc. = LCCOMB_X42_Y23_N12; Fanout = 2; COMB Node = 'Add3~18'
+        Info: 7: + IC(0.000 ns) + CELL(0.159 ns) = 1.559 ns; Loc. = LCCOMB_X42_Y23_N14; Fanout = 2; COMB Node = 'Add3~21'
+        Info: 8: + IC(0.000 ns) + CELL(0.071 ns) = 1.630 ns; Loc. = LCCOMB_X42_Y23_N16; Fanout = 2; COMB Node = 'Add3~24'
+        Info: 9: + IC(0.000 ns) + CELL(0.071 ns) = 1.701 ns; Loc. = LCCOMB_X42_Y23_N18; Fanout = 2; COMB Node = 'Add3~27'
+        Info: 10: + IC(0.000 ns) + CELL(0.071 ns) = 1.772 ns; Loc. = LCCOMB_X42_Y23_N20; Fanout = 2; COMB Node = 'Add3~30'
+        Info: 11: + IC(0.000 ns) + CELL(0.071 ns) = 1.843 ns; Loc. = LCCOMB_X42_Y23_N22; Fanout = 2; COMB Node = 'Add3~33'
+        Info: 12: + IC(0.000 ns) + CELL(0.071 ns) = 1.914 ns; Loc. = LCCOMB_X42_Y23_N24; Fanout = 2; COMB Node = 'Add3~36'
+        Info: 13: + IC(0.000 ns) + CELL(0.410 ns) = 2.324 ns; Loc. = LCCOMB_X42_Y23_N26; Fanout = 1; COMB Node = 'Add3~38'
+        Info: 14: + IC(0.755 ns) + CELL(0.271 ns) = 3.350 ns; Loc. = LCCOMB_X43_Y22_N30; Fanout = 2; COMB Node = 'Add3~40'
+        Info: 15: + IC(0.663 ns) + CELL(0.393 ns) = 4.406 ns; Loc. = LCCOMB_X42_Y22_N26; Fanout = 2; COMB Node = 'fft_mag[13]~44'
+        Info: 16: + IC(0.000 ns) + CELL(0.071 ns) = 4.477 ns; Loc. = LCCOMB_X42_Y22_N28; Fanout = 1; COMB Node = 'fft_mag[14]~46'
+        Info: 17: + IC(0.000 ns) + CELL(0.410 ns) = 4.887 ns; Loc. = LCCOMB_X42_Y22_N30; Fanout = 1; COMB Node = 'fft_mag[15]~47'
+        Info: 18: + IC(0.000 ns) + CELL(0.084 ns) = 4.971 ns; Loc. = LCFF_X42_Y22_N31; Fanout = 1; REG Node = 'fft_mag[15]'
+        Info: Total cell delay = 2.830 ns ( 56.93 % )
+        Info: Total interconnect delay = 2.141 ns ( 43.07 % )
+    Info: - Smallest clock skew is -0.006 ns
+        Info: + Shortest clock path from clock "clk" to destination register is 4.856 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.959 ns) = 0.959 ns; Loc. = PIN_AD15; Fanout = 2; CLK Node = 'clk'
+            Info: 2: + IC(0.613 ns) + CELL(0.787 ns) = 2.359 ns; Loc. = LCFF_X50_Y1_N29; Fanout = 1; REG Node = 'slow_clk'
+            Info: 3: + IC(0.735 ns) + CELL(0.000 ns) = 3.094 ns; Loc. = CLKCTRL_G15; Fanout = 254; COMB Node = 'slow_clk~clkctrl'
+            Info: 4: + IC(1.225 ns) + CELL(0.537 ns) = 4.856 ns; Loc. = LCFF_X42_Y22_N31; Fanout = 1; REG Node = 'fft_mag[15]'
+            Info: Total cell delay = 2.283 ns ( 47.01 % )
+            Info: Total interconnect delay = 2.573 ns ( 52.99 % )
+        Info: - Longest clock path from clock "clk" to source register is 4.862 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.959 ns) = 0.959 ns; Loc. = PIN_AD15; Fanout = 2; CLK Node = 'clk'
+            Info: 2: + IC(0.613 ns) + CELL(0.787 ns) = 2.359 ns; Loc. = LCFF_X50_Y1_N29; Fanout = 1; REG Node = 'slow_clk'
+            Info: 3: + IC(0.735 ns) + CELL(0.000 ns) = 3.094 ns; Loc. = CLKCTRL_G15; Fanout = 254; COMB Node = 'slow_clk~clkctrl'
+            Info: 4: + IC(1.231 ns) + CELL(0.537 ns) = 4.862 ns; Loc. = LCFF_X43_Y23_N23; Fanout = 3; REG Node = 'fft4_core:u_fft|o_im[4]'
+            Info: Total cell delay = 2.283 ns ( 46.96 % )
+            Info: Total interconnect delay = 2.579 ns ( 53.04 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Micro setup delay of destination is -0.036 ns
+Info: tsu for register "fft_mag[0]" (data pin = "rst", clock pin = "clk") is 4.592 ns
+    Info: + Longest pin to register delay is 9.484 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.842 ns) = 0.842 ns; Loc. = PIN_T29; Fanout = 107; PIN Node = 'rst'
+        Info: 2: + IC(6.383 ns) + CELL(0.438 ns) = 7.663 ns; Loc. = LCCOMB_X43_Y23_N2; Fanout = 16; COMB Node = 'fft_mag[0]~18'
+        Info: 3: + IC(1.161 ns) + CELL(0.660 ns) = 9.484 ns; Loc. = LCFF_X42_Y22_N1; Fanout = 1; REG Node = 'fft_mag[0]'
+        Info: Total cell delay = 1.940 ns ( 20.46 % )
+        Info: Total interconnect delay = 7.544 ns ( 79.54 % )
+    Info: + Micro setup delay of destination is -0.036 ns
+    Info: - Shortest clock path from clock "clk" to destination register is 4.856 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.959 ns) = 0.959 ns; Loc. = PIN_AD15; Fanout = 2; CLK Node = 'clk'
+        Info: 2: + IC(0.613 ns) + CELL(0.787 ns) = 2.359 ns; Loc. = LCFF_X50_Y1_N29; Fanout = 1; REG Node = 'slow_clk'
+        Info: 3: + IC(0.735 ns) + CELL(0.000 ns) = 3.094 ns; Loc. = CLKCTRL_G15; Fanout = 254; COMB Node = 'slow_clk~clkctrl'
+        Info: 4: + IC(1.225 ns) + CELL(0.537 ns) = 4.856 ns; Loc. = LCFF_X42_Y22_N1; Fanout = 1; REG Node = 'fft_mag[0]'
+        Info: Total cell delay = 2.283 ns ( 47.01 % )
+        Info: Total interconnect delay = 2.573 ns ( 52.99 % )
+Info: tco from clock "clk" to destination pin "y_out[4]" through register "fft_mag[4]" is 13.479 ns
+    Info: + Longest clock path from clock "clk" to source register is 4.856 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.959 ns) = 0.959 ns; Loc. = PIN_AD15; Fanout = 2; CLK Node = 'clk'
+        Info: 2: + IC(0.613 ns) + CELL(0.787 ns) = 2.359 ns; Loc. = LCFF_X50_Y1_N29; Fanout = 1; REG Node = 'slow_clk'
+        Info: 3: + IC(0.735 ns) + CELL(0.000 ns) = 3.094 ns; Loc. = CLKCTRL_G15; Fanout = 254; COMB Node = 'slow_clk~clkctrl'
+        Info: 4: + IC(1.225 ns) + CELL(0.537 ns) = 4.856 ns; Loc. = LCFF_X42_Y22_N9; Fanout = 1; REG Node = 'fft_mag[4]'
+        Info: Total cell delay = 2.283 ns ( 47.01 % )
+        Info: Total interconnect delay = 2.573 ns ( 52.99 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Longest register to pin delay is 8.373 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X42_Y22_N9; Fanout = 1; REG Node = 'fft_mag[4]'
+        Info: 2: + IC(1.008 ns) + CELL(0.275 ns) = 1.283 ns; Loc. = LCCOMB_X40_Y21_N6; Fanout = 1; COMB Node = 'y_out~4'
+        Info: 3: + IC(4.262 ns) + CELL(2.828 ns) = 8.373 ns; Loc. = PIN_AK3; Fanout = 0; PIN Node = 'y_out[4]'
+        Info: Total cell delay = 3.103 ns ( 37.06 % )
+        Info: Total interconnect delay = 5.270 ns ( 62.94 % )
+Info: Longest tpd from source pin "mode" to destination pin "y_out[4]" is 14.201 ns
+    Info: 1: + IC(0.000 ns) + CELL(0.842 ns) = 0.842 ns; Loc. = PIN_T28; Fanout = 16; PIN Node = 'mode'
+    Info: 2: + IC(6.119 ns) + CELL(0.150 ns) = 7.111 ns; Loc. = LCCOMB_X40_Y21_N6; Fanout = 1; COMB Node = 'y_out~4'
+    Info: 3: + IC(4.262 ns) + CELL(2.828 ns) = 14.201 ns; Loc. = PIN_AK3; Fanout = 0; PIN Node = 'y_out[4]'
+    Info: Total cell delay = 3.820 ns ( 26.90 % )
+    Info: Total interconnect delay = 10.381 ns ( 73.10 % )
+Info: th for register "iir_core:u_iir|y2[2]" (data pin = "rst", clock pin = "clk") is -2.125 ns
+    Info: + Longest clock path from clock "clk" to destination register is 4.851 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.959 ns) = 0.959 ns; Loc. = PIN_AD15; Fanout = 2; CLK Node = 'clk'
+        Info: 2: + IC(0.613 ns) + CELL(0.787 ns) = 2.359 ns; Loc. = LCFF_X50_Y1_N29; Fanout = 1; REG Node = 'slow_clk'
+        Info: 3: + IC(0.735 ns) + CELL(0.000 ns) = 3.094 ns; Loc. = CLKCTRL_G15; Fanout = 254; COMB Node = 'slow_clk~clkctrl'
+        Info: 4: + IC(1.220 ns) + CELL(0.537 ns) = 4.851 ns; Loc. = LCFF_X41_Y21_N31; Fanout = 2; REG Node = 'iir_core:u_iir|y2[2]'
+        Info: Total cell delay = 2.283 ns ( 47.06 % )
+        Info: Total interconnect delay = 2.568 ns ( 52.94 % )
+    Info: + Micro hold delay of destination is 0.266 ns
+    Info: - Shortest pin to register delay is 7.242 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.842 ns) = 0.842 ns; Loc. = PIN_T29; Fanout = 107; PIN Node = 'rst'
+        Info: 2: + IC(6.166 ns) + CELL(0.150 ns) = 7.158 ns; Loc. = LCCOMB_X41_Y21_N30; Fanout = 1; COMB Node = 'iir_core:u_iir|y2~2'
+        Info: 3: + IC(0.000 ns) + CELL(0.084 ns) = 7.242 ns; Loc. = LCFF_X41_Y21_N31; Fanout = 2; REG Node = 'iir_core:u_iir|y2[2]'
+        Info: Total cell delay = 1.076 ns ( 14.86 % )
+        Info: Total interconnect delay = 6.166 ns ( 85.14 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 197 megabytes
+    Info: Processing ended: Thu Dec 18 11:24:08 2025
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:00
+
+

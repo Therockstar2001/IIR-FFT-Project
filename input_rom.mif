@@ -1,0 +1,88 @@
+-- Copyright (C) 1991-2009 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+
+-- Quartus II generated Memory Initialization File (.mif)
+
+WIDTH=16;
+DEPTH=64;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+	00  :   D2D5;
+	01  :   E8F6;
+	02  :   3B24;
+	03  :   34CF;
+	04  :   EC29;
+	05  :   F48F;
+	06  :   2614;
+	07  :   14FE;
+	08  :   0E5A;
+	09  :   49B2;
+	0A  :   4CE5;
+	0B  :   10F9;
+	0C  :   254D;
+	0D  :   6B0B;
+	0E  :   5001;
+	0F  :   05BB;
+	10  :   0F21;
+	11  :   36A2;
+	12  :   1D75;
+	13  :   0D10;
+	14  :   3508;
+	15  :   24D6;
+	16  :   DB8B;
+	17  :   EC1E;
+	18  :   3CC9;
+	19  :   2B1A;
+	1A  :   DFEB;
+	1B  :   F118;
+	1C  :   24F8;
+	1D  :   0CD7;
+	1E  :   F81D;
+	1F  :   1DBA;
+	20  :   0E43;
+	21  :   BCF9;
+	22  :   B6B5;
+	23  :   0421;
+	24  :   113D;
+	25  :   CFB3;
+	26  :   BA4E;
+	27  :   C820;
+	28  :   AB8D;
+	29  :   AFA4;
+	2A  :   051C;
+	2B  :   1CED;
+	2C  :   C27B;
+	2D  :   9EFA;
+	2E  :   EA07;
+	2F  :   12F9;
+	30  :   FC72;
+	31  :   10C6;
+	32  :   2E0E;
+	33  :   FD67;
+	34  :   E6DA;
+	35  :   4735;
+	36  :   7FFF;
+	37  :   2E69;
+	38  :   F18F;
+	39  :   16D6;
+	3A  :   2D14;
+	3B  :   22BF;
+	3C  :   37FD;
+	3D  :   3CB2;
+	3E  :   FA9A;
+	3F  :   C942;
+END;

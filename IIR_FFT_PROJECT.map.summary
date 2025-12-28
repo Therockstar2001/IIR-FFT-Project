@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Dec 18 11:23:57 2025
+Quartus II Version : 9.1 Build 222 10/21/2009 SJ Web Edition
+Revision Name : IIR_FFT_PROJECT
+Top-level Entity Name : top_fft_iir
+Family : Cyclone II
+Total logic elements : 383
+    Total combinational functions : 318
+    Dedicated logic registers : 257
+Total registers : 257
+Total pins : 19
+Total virtual pins : 0
+Total memory bits : 1,024
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

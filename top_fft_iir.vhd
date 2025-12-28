@@ -1,0 +1,183 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity top_fft_iir is
+  port (
+    clk   : in  std_logic;           -- CLOCK_50 on DE2-70
+    rst   : in  std_logic;           
+    mode  : in  std_logic;           
+    y_out : out signed(15 downto 0)  -- output to LEDs
+  );
+end entity;
+
+architecture rtl of top_fft_iir is
+
+  --------------------------------------------------------------------
+  constant SIM : boolean := false;   
+
+  --------------------------------------------------------------------
+  -- INTERNAL ACTIVE-HIGH RESET + MODE
+  --------------------------------------------------------------------
+  signal rst_active  : std_logic;
+  signal mode_active : std_logic;
+
+  --------------------------------------------------------------------
+  -- OPTIONAL CLOCK DIVIDER
+  --------------------------------------------------------------------
+  signal slow_clk : std_logic := '0';
+  signal div_cnt  : unsigned(23 downto 0) := (others=>'0');
+
+  --------------------------------------------------------------------
+  -- COMPONENT DECLARATIONS
+  --------------------------------------------------------------------
+  component input_rom is
+    port (
+      address : in  std_logic_vector(5 downto 0);
+      clock   : in  std_logic;
+      q       : out std_logic_vector(15 downto 0)
+    );
+  end component;
+
+  component iir_core is
+    port (
+      clk   : in  std_logic;
+      rst   : in  std_logic;
+      x_in  : in  signed(15 downto 0);
+      y_out : out signed(15 downto 0)
+    );
+  end component;
+
+  component fft4_core is
+    port (
+      clk          : in  std_logic;
+      rst          : in  std_logic;
+      sample_valid : in  std_logic;
+      x_in         : in  signed(15 downto 0);
+      out_valid    : out std_logic;
+      bin_idx      : out unsigned(1 downto 0);
+      y_re         : out signed(15 downto 0);
+      y_im         : out signed(15 downto 0)
+    );
+  end component;
+
+  --------------------------------------------------------------------
+  -- SIGNALS
+  --------------------------------------------------------------------
+  signal rom_addr  : unsigned(5 downto 0) := (others=>'0');
+  signal rom_q_slv : std_logic_vector(15 downto 0);
+  signal rom_x     : signed(15 downto 0);
+
+  signal y_iir     : signed(15 downto 0);
+  signal fft_valid : std_logic;
+  signal fft_idx   : unsigned(1 downto 0);
+  signal fft_re    : signed(15 downto 0);
+  signal fft_im    : signed(15 downto 0);
+
+  signal fft_mag   : signed(15 downto 0);
+
+  -- absolute value helper
+  function abs16(a : signed(15 downto 0)) return signed is
+  begin
+    if a(15) = '1' then return -a; else return a; end if;
+  end function;
+
+begin
+
+  --------------------------------------------------------------------
+  -- FIX ACTIVE-LOW BUTTONS 
+  --------------------------------------------------------------------
+  rst_active  <= not rst;   -- KEY0: pressed = 0 ? reset = 1
+  mode_active <= not mode;  -- KEY1: pressed = 0 ? mode = 1 (FFT)
+
+  --------------------------------------------------------------------
+  -- CLOCK DIVIDER FOR FPGA 
+  --------------------------------------------------------------------
+  process(clk)
+  begin
+    if rising_edge(clk) then
+      if SIM = false then           -- ONLY FPGA BOARD
+        div_cnt <= div_cnt + 1;
+        slow_clk <= div_cnt(23);    
+      else
+        slow_clk <= not slow_clk;            
+      end if;
+    end if;
+  end process;
+
+  --------------------------------------------------------------------
+  -- INPUT ROM
+  --------------------------------------------------------------------
+  u_rom: input_rom
+    port map (
+      address => std_logic_vector(rom_addr),
+      clock   => slow_clk,
+      q       => rom_q_slv
+    );
+
+  rom_x <= signed(rom_q_slv);
+
+  --------------------------------------------------------------------
+  -- ROM ADDRESS COUNTER
+  --------------------------------------------------------------------
+  process(slow_clk)
+  begin
+    if rising_edge(slow_clk) then
+      if rst_active='1' then
+        rom_addr <= (others=>'0');
+      else
+        rom_addr <= rom_addr + 1;
+      end if;
+    end if;
+  end process;
+
+  --------------------------------------------------------------------
+  -- IIR FILTER
+  --------------------------------------------------------------------
+  u_iir: iir_core
+    port map (
+      clk   => slow_clk,
+      rst   => rst_active,
+      x_in  => rom_x,
+      y_out => y_iir
+    );
+
+  --------------------------------------------------------------------
+  -- FFT4 CORE
+  --------------------------------------------------------------------
+  u_fft: fft4_core
+    port map (
+      clk          => slow_clk,
+      rst          => rst_active,
+      sample_valid => '1',
+      x_in         => rom_x,
+      out_valid    => fft_valid,
+      bin_idx      => fft_idx,
+      y_re         => fft_re,
+      y_im         => fft_im
+    );
+
+  --------------------------------------------------------------------
+  -- FFT MAGNITUDE 
+  --------------------------------------------------------------------
+  process(slow_clk)
+  begin
+    if rising_edge(slow_clk) then
+      if rst_active='1' then
+        fft_mag <= (others=>'0');
+      else
+        if fft_valid='1' and fft_idx="00" then
+          fft_mag <= abs16(fft_re) + abs16(fft_im);
+        end if;
+      end if;
+    end if;
+  end process;
+
+  --------------------------------------------------------------------
+  -- FINAL OUTPUT SELECTOR (KEY1)
+  --------------------------------------------------------------------
+  -- mode_active = 0 ? IIR
+  -- mode_active = 1 ? FFT4 magnitude
+  y_out <= y_iir when mode_active='0' else fft_mag;
+
+end architecture;

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="IIR_FFT_PROJECT">
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_fft_iir|input_rom:u_rom|altsyncram:rom_inst" CBX_FILE_NAME="altsyncram_pck3.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
